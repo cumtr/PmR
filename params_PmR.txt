@@ -1,0 +1,43 @@
+# Global parameters :
+DATA=~/Documents/DATA_ddRADseq/Nardus_Carex/Manip2/data/
+RES=~/Documents/DATA_ddRADseq/Nardus_Carex/Manip2/RES/
+THREADS=15
+VERBOSE=1
+
+# Step 1 : Adapters trimming 
+ADAP=${DATA}/adapters.fa
+
+# Step 2 : Data demultiplexing and reads filtering (using process_radtags)
+ENZYME_1=pstI
+ENZYME_2=mspI
+MAX_LENGTH=90
+
+# Step 3 : Samples files preparation before loci reconstruction (no specific parameters)
+
+# Step 4 : Range of M threshold for loci reconstruction (using ustacks on X random individuals)
+COVERAGE_LOC_MIN=5
+MISMATCH_LOC_IND_START=0
+MISMATCH_LOC_IND_END=7
+NB_INDIV_M=20
+
+# Step 5 : Loci reconstruction for each individuals (using ustacks and the chosen value of M)
+M_CHOOSEN=6
+
+# Step 6 : Build a catalog with all the loci of all the individuals (using cstacks)
+MISMATCH_CATALOG_MAX=10
+
+# Step 7 : Match of individual loci to the catalog (using sstacks with no specific parameter)
+
+# Step 8 : Genetic dataset export (using population)
+POP_INFOS=${DATA}/Populations_table.txt
+NB_POP=3
+PROP_POP=0.10
+MAF=0.005
+
+
+
+
+
+
+
+
