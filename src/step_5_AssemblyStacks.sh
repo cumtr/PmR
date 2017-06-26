@@ -32,7 +32,7 @@ done
 R --vanilla <<EOF
 
 	TABLE = read.table("${OUTPATH}/Stat_ustacks_M${MISMATCH}.log", header = T)
-	TABLE = TABLE[order(TABLE[,2]),]
+	TABLE = TABLE[order(TABLE[,3]),]
 
  	pdf(paste0("${RES}","Indiv_FragCover.OutStep5.pdf"), width=(5+round(nrow(TABLE)/5)), height=10)
 
