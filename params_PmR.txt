@@ -29,6 +29,7 @@ MISMATCH_CATALOG_MAX=10
 # Step 7 : Match of individual loci to the catalog (using sstacks with no specific parameter)
 
 # Step 8 : Genetic dataset export (using population)
+POP=0
 POP_INFOS=${DATA}/Populations_table.txt
 NB_POP=3
 PROP_POP=0.10
