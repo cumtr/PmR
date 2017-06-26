@@ -26,12 +26,12 @@ R --vanilla <<EOF
   for (i in 0:(nrow(table_nbloci)-1))
 	{table[i+1,1]<-table_nbloci[i+1,1]
 	 table[i+1,2]<-sum(table_nbloci[(nrow(table_nbloci)-i):nrow(table_nbloci),2])}
-  table_nbloci2<-read.table("${RES}/Hist_NombreLocis..OutStep8.txt", header=F)
+  table_nbloci2<-read.table("${OUTPUT}/batch_1.populations.retained.txt", header=F)
   table2<-table
   table2[,2]<-0
   for (i in 0:(nrow(table_nbloci2)-1))
         {table2[i+1,2]<-sum(table_nbloci2[(nrow(table_nbloci2)-i):nrow(table_nbloci2),2])}
-  pdf(paste0("${OUTPUT}","R1_Rarefaction_curve.pdf"), width=(5+round(nrow(table_nbloci2)/5)))
+  pdf(paste0("${OUTPUT}","Hist_LociNumber.OutStep8.pdf"), width=(5+round(nrow(table_nbloci2)/5)))
     barplot(rev(table[,2]), col="white", names.arg=table[,1],cex.names=0.5)
     barplot(rev(table2[,2]), col="blue", add=TRUE)
     abline(h=max(rev(table2[,2])), col = "blue")
