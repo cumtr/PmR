@@ -33,11 +33,12 @@ R --vanilla <<EOF
 
 	TABLE = read.table("${OUTPATH}/Stat_ustacks_M${MISMATCH}.log", header = T)
 	TABLE = TABLE[order(TABLE[,3]),]
+	names=unlist(lapply(strsplit(as.character(TABLE[,1]), "INPUT_STEP_2/", fixed=TRUE), function(x) x[2]))
 
  	pdf(paste0("${RES}","Indiv_FragCover.OutStep5.pdf"), width=(5+round(nrow(TABLE)/5)), height=10)
 
 	par(mar=c(8,6,4,6))
-	b = barplot(TABLE[,2], col = "white", names.arg = TABLE[,1], las = 3, cex.names = 0.7, axes = F)
+	b = barplot(TABLE[,2], col = "white", names.arg = names, las = 3, cex.names = 0.7, axes = F)
 	axis(2,las = 2)
 	barplot(TABLE[,3], col = "blue", add = T, axes = F)
 	mtext("Nb Stacks", side=2, line=3, cex.lab=1,las=3)
