@@ -22,7 +22,7 @@ do
 
 	cat ${RES}/TEMP/$$.ind | while read forward
 		do
-        	${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${STACKS}/${MISMATCH_LOC_IND_MAX_START} -r -i ${i} -M ${MISMATCH_LOC_IND_MAX_START} -m ${COVERAGE_LOC_MIN} 2> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err
+        	${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${STACKS}/${MISMATCH_LOC_IND_MAX_START} -d -i ${i} -M ${MISMATCH_LOC_IND_MAX_START} -m ${COVERAGE_LOC_MIN} 2> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err
         	i=$[${i}+1]
 			grep 'stacks merged into' ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err | awk '{print $1,$5}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/nbstacks
 	        	grep 'coverage depth' ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err | tail -1 | awk 'match($0,";"){print substr($0,RSTART-7,7)}' | awk '{print $NF}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/cov
