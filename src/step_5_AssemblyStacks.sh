@@ -20,7 +20,7 @@ echo Ind nb_unique_stacks nb_merged_stacks mean_cov > ${OUTPATH}/Stat_ustacks_M$
 for forward in ${RES}/INPUT_STEP_2/*.R1.fq.gz
 do
 	echo `basename ${forward}`
-        ${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${OUTPATH} -r -i ${i} -M ${MISMATCH} -m ${COVERAGE_LOC_MIN} 2> ${OUTPATH}/ustacks_err
+        ${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${OUTPATH} -d -i ${i} -M ${MISMATCH} -m ${COVERAGE_LOC_MIN} 2> ${OUTPATH}/ustacks_err
         i=$[${i}+1]
         awk '/stacks merged into/ { print $1,$5}' ${OUTPATH}/ustacks_err  > ${OUTPATH}/nbstacks
         awk '/After merging/ { print $6}' ${OUTPATH}/ustacks_err | sed -e 's/;//g'  > ${OUTPATH}/cov
