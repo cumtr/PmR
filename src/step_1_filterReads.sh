@@ -11,7 +11,7 @@ do
     
     mkdir -p ${RES}/CUT/${outname}
 	
-    ${BBDUK} in1=${lib}_R1.fastq.gz in2=${lib}_R2.fastq.gz out1=${RES}/CUT/${outname}/${outname}_R1.bbduk.fastq.gz out2=${RES}/CUT/${outname}/${outname}_R2.bbduk.fastq.gz ref=${ADAP} ktrim=r k=20 mink=5 hdist=1 tpe tbo overwrite=true bhist=${RES}/CUT/${outname}/bhist_${outname}.txt qhist=${RES}/CUT/${outname}/qhist_${outname}.txt aqhist=${RES}/CUT/${outname}/aqhist_${outname}.txt lhist=${RES}/CUT/${outname}/lhist_${outname}.txt >& ${RES}/CUT/${outname}/${outname}.bbduk.log
+    ${BBDUK} in1=${lib}_R1.fastq.gz in2=${lib}_R2.fastq.gz out1=${RES}/CUT/${outname}/${outname}_R1.bbduk.fastq.gz out2=${RES}/CUT/${outname}/${outname}_R2.bbduk.fastq.gz ref=${ADAP} ktrim=r k=20 mink=10 hdist=1 tpe tbo overwrite=true bhist=${RES}/CUT/${outname}/bhist_${outname}.txt qhist=${RES}/CUT/${outname}/qhist_${outname}.txt aqhist=${RES}/CUT/${outname}/aqhist_${outname}.txt lhist=${RES}/CUT/${outname}/lhist_${outname}.txt >& ${RES}/CUT/${outname}/${outname}.bbduk.log
     
     mv ${RES}/CUT/${outname}/${outname}_R1.bbduk.fastq.gz ${RES}/CUT/${outname}/${outname}_R1.cut.fastq.gz
     mv ${RES}/CUT/${outname}/${outname}_R2.bbduk.fastq.gz ${RES}/CUT/${outname}/${outname}_R2.cut.fastq.gz
