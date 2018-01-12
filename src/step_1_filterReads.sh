@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-mkdir -p ${RES}/CUT
+mkdir -p ${RES}/STEP_1_FITLER_READS/
 
 for f in ${DATA}/*_R1.fastq.gz 
 do
@@ -9,19 +9,19 @@ do
     outname=`basename $lib`
     echo "	processing " $lib " ....."
     
-    mkdir -p ${RES}/CUT/${outname}
+    mkdir -p ${RES}/STEP_1_FITLER_READS/${outname}
 	
-    ${BBDUK} in1=${lib}_R1.fastq.gz in2=${lib}_R2.fastq.gz out1=${RES}/CUT/${outname}/${outname}_R1.bbduk.fastq.gz out2=${RES}/CUT/${outname}/${outname}_R2.bbduk.fastq.gz ref=${ADAP} ktrim=r k=20 mink=10 hdist=1 tpe tbo overwrite=true bhist=${RES}/CUT/${outname}/bhist_${outname}.txt qhist=${RES}/CUT/${outname}/qhist_${outname}.txt aqhist=${RES}/CUT/${outname}/aqhist_${outname}.txt lhist=${RES}/CUT/${outname}/lhist_${outname}.txt >& ${RES}/CUT/${outname}/${outname}.bbduk.log
+    ${BBDUK} in1=${lib}_R1.fastq.gz in2=${lib}_R2.fastq.gz out1=${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R1.bbduk.fastq.gz out2=${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R2.bbduk.fastq.gz ref=${ADAP} ktrim=r k=20 mink=10 hdist=1 tpe tbo overwrite=true bhist=${RES}/STEP_1_FITLER_READS/${outname}/bhist_${outname}.txt qhist=${RES}/STEP_1_FITLER_READS/${outname}/qhist_${outname}.txt aqhist=${RES}/STEP_1_FITLER_READS/${outname}/aqhist_${outname}.txt lhist=${RES}/STEP_1_FITLER_READS/${outname}/lhist_${outname}.txt >& ${RES}/STEP_1_FITLER_READS/${outname}/${outname}.bbduk.log
     
-    mv ${RES}/CUT/${outname}/${outname}_R1.bbduk.fastq.gz ${RES}/CUT/${outname}/${outname}_R1.cut.fastq.gz
-    mv ${RES}/CUT/${outname}/${outname}_R2.bbduk.fastq.gz ${RES}/CUT/${outname}/${outname}_R2.cut.fastq.gz
+    mv ${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R1.bbduk.fastq.gz ${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R1.cut.fastq.gz
+    mv ${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R2.bbduk.fastq.gz ${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R2.cut.fastq.gz
     echo "	Done" 
 
-echo ${RES}/CUT/${outname}
+echo ${RES}/STEP_1_FITLER_READS/${outname}
 
-gzip -dc ${RES}/CUT/${outname}/${outname}_R1.cut.fastq.gz | awk '(FNR%4)==2{l[length($0)]+=1}END{for (i in l) print i, l[i];}' > ${RES}/CUT/${outname}/reads.length.txt
+gzip -dc ${RES}/STEP_1_FITLER_READS/${outname}/${outname}_R1.cut.fastq.gz | awk '(FNR%4)==2{l[length($0)]+=1}END{for (i in l) print i, l[i];}' > ${RES}/STEP_1_FITLER_READS/${outname}/reads.length.txt
 
-LENGTH=${RES}/CUT/${outname}/reads.length.txt
+LENGTH=${RES}/STEP_1_FITLER_READS/${outname}/reads.length.txt
 
 
 R --vanilla <<EOF
@@ -31,7 +31,7 @@ R --vanilla <<EOF
   table_compo <- as.data.frame(table_compo[order(as.numeric(row.names(table_compo))),])
   row.names(table_compo)<-tutu  
 
-  pdf("${RES}/CUT/${outname}/Reads_length.pdf", width = 10, height = 7)
+  pdf("${RES}/STEP_1_FITLER_READS/${outname}/Reads_length.pdf", width = 10, height = 7)
 
   par(mar=c(8, 6, 4, 6))
  
@@ -69,12 +69,12 @@ done
 echo "Processing quality statistics on reads"
 
 
-for forward in ${RES}/CUT/*/*_R1.cut.fastq.gz
+for forward in ${RES}/STEP_1_FITLER_READS/*/*_R1.cut.fastq.gz
    do
 	lib=${forward/_R1.cut.fastq.gz/}
 	lib=`basename ${lib}`
-	COMPO=${RES}/CUT/${lib}/bhist_${lib}.txt
- 	QUAL=${RES}/CUT/${lib}/qhist_${lib}.txt
+	COMPO=${RES}/STEP_1_FITLER_READS/${lib}/bhist_${lib}.txt
+ 	QUAL=${RES}/STEP_1_FITLER_READS/${lib}/qhist_${lib}.txt
  
 
 R --vanilla <<EOF
@@ -83,7 +83,7 @@ R --vanilla <<EOF
   table_compo<-read.table("$COMPO", header=F, row.names=1)
   prop<-t(as.matrix(table_compo[c(1:(nrow(table_compo)/2)),]))
   table_quality<-read.table("$QUAL", header=F, row.names=1)
-  pdf(paste0("${RES}/CUT/${lib}/","${lib}","_quality_nucleotide.pdf"), width=10, height=15)
+  pdf(paste0("${RES}/STEP_1_FITLER_READS/${lib}/","${lib}","_quality_nucleotide.pdf"), width=10, height=15)
   layout(matrix(c(1:2), ncol = 1))
   plot(table_quality[,1]~as.numeric(row.names(table_quality)),xlim=c(0,(nrow(table_quality)+3)),ylim=c(0,(max(table_quality[,1])+10)),col="blue", pch=20, xlab="Nucleotide position along the read", ylab="Quality score", main="${lib}")
   ## Nucleotid proportion at each reads position
@@ -101,5 +101,5 @@ for barcode in ${DATA}/*.barcode
    do
         LIB=`basename ${barcode}`
         LIB=${LIB/.barcode/}
-        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=${RES}/${LIB}.OutStep1.pdf ${RES}/CUT/${LIB}/Reads_length.pdf ${RES}/CUT/${LIB}/${LIB}_quality_nucleotide.pdf 
+        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=${RES}/${LIB}.OutStep1.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/Reads_length.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/${LIB}_quality_nucleotide.pdf 
    done
