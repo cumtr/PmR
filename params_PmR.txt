@@ -1,6 +1,6 @@
 # Global parameters :
-DATA=~/Documents/DATA_ddRADseq/Nardus_Carex/Manip2/data/
-RES=~/Documents/DATA_ddRADseq/Nardus_Carex/Manip2/RES/
+DATA=~/Path_2_DATA/
+RES=~/Path_2_RES/
 THREADS=15
 VERBOSE=1
 
