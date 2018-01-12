@@ -101,5 +101,5 @@ for barcode in ${DATA}/*.barcode
    do
         LIB=`basename ${barcode}`
         LIB=${LIB/.barcode/}
-        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=${RES}/${LIB}.OutStep1.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/Reads_length.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/${LIB}_quality_nucleotide.pdf 
+        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=${RES}/STEP_1_FITLER_READS/${LIB}.OutStep1.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/Reads_length.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/${LIB}_quality_nucleotide.pdf 
    done
