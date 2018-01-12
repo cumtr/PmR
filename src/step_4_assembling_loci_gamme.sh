@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-mkdir -p ${RES}/STACKS
-STACKS=${RES}/STACKS
+mkdir -p ${RES}/STEP_4_ASSEMBLE_LOCI
+STACKS=${RES}/STEP_4_ASSEMBLE_LOCI
 
 mkdir -p ${RES}/TEMP
 
@@ -10,7 +10,7 @@ mkdir -p ${RES}/TEMP
 MISMATCH_LOC_IND_MAX_START=${MISMATCH_LOC_IND_START}
 MISMATCH_LOC_IND_MAX_END=${MISMATCH_LOC_IND_END}
 
-ls -l ${RES}/INPUT_STEP_2/*.R1.fq.gz | awk '{print $9}' | awk -v seed=$RANDOM 'BEGIN{srand(seed);}{print rand()" "$0}' | sort | head -n ${NB_INDIV_M} | awk '{print $2}' >> ${RES}/TEMP/$$.ind
+ls -l ${RES}/STEP_3_PREPARE_SAMPLE/*.R1.fq.gz | awk '{print $9}' | awk -v seed=$RANDOM 'BEGIN{srand(seed);}{print rand()" "$0}' | sort | head -n ${NB_INDIV_M} | awk '{print $2}' >> ${RES}/TEMP/$$.ind
 
 
 while ((${MISMATCH_LOC_IND_MAX_START} <= ${MISMATCH_LOC_IND_MAX_END}))
@@ -22,12 +22,12 @@ do
 
 	cat ${RES}/TEMP/$$.ind | while read forward
 		do
-        	${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${STACKS}/${MISMATCH_LOC_IND_MAX_START} -d -i ${i} -M ${MISMATCH_LOC_IND_MAX_START} -m ${COVERAGE_LOC_MIN} 2> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err
+        	${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${STACKS}/${MISMATCH_LOC_IND_MAX_START} -r -i ${i} -M ${MISMATCH_LOC_IND_MAX_START} -m ${COVERAGE_LOC_MIN} 2> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err
         	i=$[${i}+1]
 			grep 'stacks merged into' ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err | awk '{print $1,$5}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/nbstacks
 	        	grep 'coverage depth' ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err | tail -1 | awk 'match($0,";"){print substr($0,RSTART-7,7)}' | awk '{print $NF}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/cov
 			chem=${forward/.AliConcat.fq/}
-			name=${chem/${RES}/INPUT_STEP_2\//}
+			name=${chem/${RES}/STEP_3_PREPARE_SAMPLE\//}
 			echo ${name} `cat ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/nbstacks` `cat ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/cov` >> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/Stat_ustacks_M${MISMATCH_LOC_IND_MAX_START}.log
 		done
 

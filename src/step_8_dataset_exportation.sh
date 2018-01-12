@@ -1,7 +1,7 @@
 #!/bin/bash
 
-INPUT=${RES}/STACKS_OUTPUT/
-OUTPUT=${RES}/OUTPUT/
+INPUT=${RES}/STEP_5_7_RUN_STACKS/
+OUTPUT=${RES}/STEP_8_FINAL_OUTPUT/
 
 mkdir -p ${OUTPUT}
 
@@ -9,11 +9,11 @@ STACKS=${RES}/STACKS
 INP_REP=${STACKS}/CATALOG_${M_CHOOSEN}/
 
 
-if (( ${POP}==1 ))
+if [ -e  ${POP_INFOS} ]
 then
-	${POPULATIONS} -b 1 -t ${THREADS} -O ${OUTPUT}  -P ${INPUT} -M ${POP_INFOS} -p ${NB_POP} -r ${PROP_POP} -a ${MAF} --write_random_snp --vcf --structure --genepop --phylip --fstats
+	${POPULATIONS} -b 1 -t ${THREADS} -O ${OUTPUT}  -P ${INPUT} -M ${POP_INFOS} -p ${NB_POP} -r ${PROP_POP} -a ${MAF} --write_random_snp --vcf --structure --genepop --phylip --fstats --plink --phylip_var_all
 else
-	${POPULATIONS} -b 1 -t ${THREADS} -O ${OUTPUT}  -P ${INPUT} -r ${PROP_POP} -a ${MAF} --write_random_snp --vcf --structure --genepop --phylip --fstats
+	${POPULATIONS} -b 1 -t ${THREADS} -O ${OUTPUT}  -P ${INPUT} -r ${PROP_POP} -a ${MAF} --write_random_snp --vcf --structure --genepop --phylip --fstats --plink --phylip_var_all
 fi
 
 sed -n '/Distribution of population loci\./,/Distribution of confounded loci at catalog locus\./p' ${OUTPUT}/batch_1.populations.log | awk '! /#/' > ${OUTPUT}/batch_1.populations.txt
@@ -31,13 +31,9 @@ R --vanilla <<EOF
   table2[,2]<-0
   for (i in 0:(nrow(table_nbloci2)-1))
         {table2[i+1,2]<-sum(table_nbloci2[(nrow(table_nbloci2)-i):nrow(table_nbloci2),2])}
-  pdf(paste0("${OUTPUT}","Hist_LociNumber.OutStep8.pdf"), width=(5+round(nrow(table_nbloci2)/5)))
-    barplot(rev(table[,2]), col="white", names.arg=table[,1],cex.names=0.5)
-    barplot(rev(table2[,2]), col="blue", add=TRUE)
-    abline(h=max(rev(table2[,2])), col = "blue")
+  pdf(paste0("${OUTPUT}","R1_Rarefaction_curve.pdf"), width=(5+round(nrow(table_nbloci2)/5)))
+    barplot(rev(table[,2]), col="blue", names.arg=table[,1],cex.names=0.5)
+    barplot(rev(table2[,2]), col="white", add=TRUE)
   dev.off()
 
 EOF
-
-
-

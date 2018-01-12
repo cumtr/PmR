@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTPATH=${RES}/STACKS_OUTPUT/
+OUTPATH=${RES}/STEP_5_7_RUN_STACKS/
 
 for forward in ${OUTPATH}/*.snps.tsv.gz
 do
