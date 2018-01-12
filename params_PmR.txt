@@ -34,11 +34,3 @@ POP_INFOS=${DATA}/Populations_table.txt
 NB_POP=3
 PROP_POP=0.10
 MAF=0.005
-
-
-
-
-
-
-
-
