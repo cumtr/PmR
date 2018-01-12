@@ -1,4 +1,4 @@
-STEP#!/bin/bash
+#!/bin/bash
 
 mkdir -p ${RES}/STEP_2_DEMULTIPLEX
 
