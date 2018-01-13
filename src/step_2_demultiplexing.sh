@@ -1,6 +1,7 @@
 #!/bin/bash
 
-mkdir -p ${RES}/STEP_2_DEMULTIPLEX
+rm -rf ${RES}/STEP_2_DEMULTIPLEX
+mkdir ${RES}/STEP_2_DEMULTIPLEX
 
 for forward in ${RES}/STEP_1_FITLER_READS/*/*R1.cut.fastq.gz
 do

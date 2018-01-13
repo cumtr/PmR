@@ -1,7 +1,7 @@
 #!/bin/bash
 
-
-mkdir -p ${RES}/STEP_1_FITLER_READS/
+rm -rf ${RES}/STEP_1_FITLER_READS/
+mkdir ${RES}/STEP_1_FITLER_READS/
 
 for f in ${DATA}/*_R1.fastq.gz 
 do
@@ -101,5 +101,5 @@ for barcode in ${DATA}/*.barcode
    do
         LIB=`basename ${barcode}`
         LIB=${LIB/.barcode/}
-        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=${RES}/STEP_1_FITLER_READS/${LIB}.OutStep1.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/Reads_length.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/${LIB}_quality_nucleotide.pdf 
+        gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=${RES}/${LIB}.OutStep1.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/Reads_length.pdf ${RES}/STEP_1_FITLER_READS/${LIB}/${LIB}_quality_nucleotide.pdf 
    done

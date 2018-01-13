@@ -3,7 +3,8 @@
 # set -e
 # set -x
 
-mkdir -p ${RES}/STEP_3_PREPARE_SAMPLE
+rm -rf ${RES}/STEP_3_PREPARE_SAMPLE 
+mkdir ${RES}/STEP_3_PREPARE_SAMPLE
 mkdir -p ${RES}/TEMP
 
 for INDIV in `awk '{print $3}' ${RES}/inds.tsv | sort | uniq`

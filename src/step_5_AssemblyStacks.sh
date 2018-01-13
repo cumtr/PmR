@@ -5,13 +5,15 @@
 
 OUTPATH=${RES}/STEP_5_7_RUN_STACKS
 
-mkdir -p ${OUTPATH}
+rm -rf ${OUTPATH}
+mkdir ${OUTPATH}
 
 MISMATCH=${M_CHOSEN}
 
 rm -f ${OUTPATH}/ustacks_err
 rm -f ${OUTPATH}/nbstacks
 rm -f ${OUTPATH}/cov
+rm -f ${OUTPATH}/Stat_ustacks_M${MISMATCH}.log
 
 i="0"
 

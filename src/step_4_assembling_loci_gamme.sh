@@ -1,7 +1,7 @@
 #!/bin/bash
 
-
-mkdir -p ${RES}/STEP_4_ASSEMBLE_LOCI
+rm -rf ${RES}/STEP_4_ASSEMBLE_LOCI
+mkdir ${RES}/STEP_4_ASSEMBLE_LOCI
 STACKS=${RES}/STEP_4_ASSEMBLE_LOCI
 
 mkdir -p ${RES}/TEMP
@@ -67,7 +67,7 @@ R --vanilla <<EOF
         TAB = read.table(paste0("${STACKS}","/Mismatch_allowed.txt"), skip = 1)
         TAB_Part = apply(TAB, 1, function(x){1-(x/x[1])})
 
-        pdf(paste0("${RES}","/M_choice.OutStep4.pdf") , width = 10, height = 5)
+        pdf(paste0("${STACKS}","/M_choice.OutStep4.pdf") , width = 10, height = 5)
 
         boxplot(t(TAB_Part), border = "grey50", names = c(0:(ncol(TAB)-1)), main = "Part of polymorphics stacks\naccording to M values (R1)")
         lines(apply(TAB_Part, 1, function(x){median(x)}), col = "blue", lwd = 2)
