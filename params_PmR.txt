@@ -21,7 +21,7 @@ MISMATCH_LOC_IND_END=7
 NB_INDIV_M=20
 
 # Step 5 : Loci reconstruction for each individuals (using ustacks and the chosen value of M)
-M_CHOOSEN=6
+M_CHOSEN=6
 
 # Step 6 : Build a catalog with all the loci of all the individuals (using cstacks)
 MISMATCH_CATALOG_MAX=10
