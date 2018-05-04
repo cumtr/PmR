@@ -1,7 +1,7 @@
 
 <p align="center">
   <a>
-    <img height="150" src="logo/PmR.png">
+    <img height="300" src="logo/PmR.png">
   </a>
 </p>
 
