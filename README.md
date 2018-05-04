@@ -32,21 +32,14 @@ The following section describes the params files required for PmR. Users have to
 
 `less params.txt`
 
-
-| Header 1      |     2 header    |   header 3 |
-| ------------- |: -------------: | ---------: |
-| 1 Online      |        1        |      value |
-| Line 2        |        2        |      value |
-| 3 Online      |        3        |      value |
-
 ```
 # Global parameters :
-TOOLS=~/Path_2_TOOLS/tools.sh
-DATA=~/Path_2_DATA/
+TOOLS=~/Path_2_TOOLS/tools.sh                  ## path to file with tools aliases
+DATA=~/Path_2_DATA/                            ## path to directory containing the input library reads and the barcode file (see next section to specifications)
+RES=~/Path_2_RES/                              ## path to directory to write output
+THREADS=15                                     ## Number of threads which will be used
+VERBOSE=1                                      ## Set verbose to TRUE (1) or FASE (0)
 
-RES=~/Path_2_RES/
-THREADS=15
-VERBOSE=1
 
 # Step 1 
 ADAP=~/Path_2_PmR/ressources/adapters.fa
@@ -84,11 +77,7 @@ MAF=0.005
 
 
 
-## path to file with tools aliases
-## path to directory containing the input library reads and the barcode file (see next section to specifications)
-## path to directory to write output
-## Number of threads which will be used
-## Set verbose to TRUE (1) or FASE (0)
+
 
 
 ## list of adapters for filtering reads
@@ -284,6 +273,10 @@ A population file is required, and options must be edited in the params file (se
 For further phylogenetic analysis, if a different population for each sample is supplied (in case of each sample correspond to unique species, see input files section), NB_POP=3 will fix the condition that a locus must be present in three species at least. In this case, PROP_POP will not be considered in the populations function. 
 Output files will be in the STEP_8_FINAL_OUTPUT/ directory. 
 4. Running process
+
+
+### 4. Running PmR
+------------------
 
 PmR could be called step by step or all the steps in one time. Recommendations about steps are given in the previous description (section 3). After edition of the tools.sh and params.txt files, the first step of quality analysis and demultiplexing should be called as following: 
 
