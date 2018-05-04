@@ -148,6 +148,7 @@ this repertory must contain :
 The sequences files are in .fastq.gz format and should be named :
 + Basename_Lib_R1.fastq.gz
 + Basename_Lib_R2.fastq.gz
+
 where <Basename_Lib> is the name of the library.
 
 `ls DATA/`
