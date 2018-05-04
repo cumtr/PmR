@@ -24,9 +24,21 @@ PmR is tested on Unix environment and requires:
 
 PmR requires the paired-end ddRAD sequences files (R1 and R2), a file of barcodes/individuals matching, a file of parameters and a file of adapters sequences. All these files have to be directly placed in the DATA directory.
 
+
+#### 2. Input files
+--------------------
+
 2.1 - Parameters files (params.txt)
 The following section describes the params files required for PmR. Users have to modify the params.txt file provided before running PmR. Default values are set for filtering and assembly steps. As the step 4 of PmR performs a range of parameter setting to optimise the assembly of loci, some values have to be modified after the step 4 (see section 3.). 
 % less params.txt
+
+
+| Header 1      |     2 header    |   header 3 |
+| ------------- |: -------------: | ---------: |
+| 1 Online      |        1        |      value |
+| Line 2        |        2        |      value |
+| 3 Online      |        3        |      value |
+
 
 # Global parameters :
 TOOLS=~/Path_2_TOOLS/tools.sh
