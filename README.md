@@ -71,7 +71,6 @@ POP_INFOS=${DATA}/Populations_table.txt        ## population file
 NB_POP=3                                       ## the locus must be present in at least X populations
 PROP_POP=0.10                                  ## minimum percentage of individuals in a population required to process a locus for that population
 MAF=0.005                                      ## minimum minor allele frequency required to process a nucleotide site at a locus (0 < min_maf < 0.5)
-
 ```
 
 #### 2.2 - Dependencies (tools.txt)
@@ -101,8 +100,8 @@ this repertory must contain :
 + a population file (optional)
 
 The sequences files are in .fastq.gz format and should be named :
-    Basename_Lib_R1.fastq.gz
-    Basename_Lib_R2.fastq.gz
++ Basename_Lib_R1.fastq.gz
++ Basename_Lib_R2.fastq.gz
 
 where <Basename_Lib> is the name of the library.
 
