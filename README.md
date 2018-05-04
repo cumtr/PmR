@@ -22,7 +22,7 @@ PmR is tested on Unix environment and requires:
 ------------------
 
 
-PmR requires the paired-end ddRAD sequences files (R1 and R2), a file of barcodes/individuals matching, a file of parameters and a file of adapters sequences. All these files have to be directly placed in the DATA directory.
+PmR requires the paired-end ddRAD sequences files (R1 and R2), a file of barcodes/individuals matching, a file of parameters and a file of adapters sequences. All these files have to be directly placed in the **DATA/** directory.
 
 
 #### 2.1 - Parameters files (params.txt)
@@ -121,7 +121,6 @@ MAF=0.005
 
 #### 2.2 - Dependencies (tools.txt)
 
-
 The access path of all dependencies required by PmR must be supplied in the tools.sh file, using following command: 
 
 `cat tools.sh`
@@ -140,11 +139,11 @@ POPULATIONS=/mypathTopopulation/populations
 #### 2.3 - Raw data 
 
 
-All Raw Data must be in the DATA repertory.
+All Raw Data must be in the **DATA/** repertory.
 this repertory must contain :
-two sequences files
-a barcode file
-a population file (optional)
++ two sequences files
++ a barcode file
++ a population file (optional)
 
 The sequences files are in .fastq.gz format and should be named :
 + Basename_Lib_R1.fastq.gz
@@ -156,6 +155,7 @@ where <Basename_Lib> is the name of the library.
 ```
 Library_test_R1.fastq.gz
 Library_test_R2.fastq.gz
+Library_test.barcode
 ```
 
 `less DATA/Library_test_R1.fastq.gz`
@@ -180,23 +180,23 @@ CTGTT <tab> Sample2
 
 The population map file links individuals to different population groups for summary statistics computing such as π, FIS and FST. Each line should have one name and one barcode, separated by a tab, as in the following example:
 
-% head Populations_table.txt
+`head Populations_table.txt`
+```
 Sample1Name<tab>pop01
 Sample2Name<tab>pop01
 Sample3Name<tab>pop02
-
+```
 
 ### 3. Pipeline description
 ---------------------------
-
 
 PmR mostly used the Stacks functions to treat the ddRAD sequencing data. We strongly recommend to look at the Stacks documentation before using the pipeline. 
 
 #### 3.1 - Adapters trimming (Step 1)
 
-If sequencing adapters are present in the sequences, they are removed by bbduk. The list of illumina adapters (containing all indexes) is provided with PmR in the ressources/ folder (adapters.fa) and could be directly be used. All reads that were present in the input file will also be present in the output file, even reads that were trimmed entirely (because the adapter was found in the very beginning).
+If sequencing adapters are present in the sequences, they are removed by bbduk. The list of illumina adapters (containing all indexes) is provided with PmR in the **ressources/** directory (adapters.fa) and could be directly be used. All reads that were present in the input file will also be present in the output file, even reads that were trimmed entirely (because the adapter was found in the very beginning).
 
-A directory named STEP_1_FITLER_READS/, is created at this step containing the clean data which will be used by PmR.
+A directory named **STEP_1_FITLER_READS/**, is created at this step containing the clean data which will be used by PmR.
 
 #### 3.2 - Data demultiplexing and reads filtering (Step 2)
 
@@ -205,7 +205,7 @@ The process_radtags function from Stacks is run on each library to demultiplex a
 Currently supported enzymes by Stacks include:
 'aciI', 'ageI', 'aluI', 'apeKI', 'apoI', 'aseI', 'bamHI', 'bfaI', 'bgIII', 'bspDI', 'bstYI', 'claI', 'ddeI', 'dpnII', 'eaeI', 'ecoRI', 'ecoRV', 'ecoT22I', 'hindIII', 'kpnI', 'mluCI', 'mseI', 'mspI', 'ndeI', 'nheI', 'nlaIII', 'notI', 'nsiI', 'pstI', 'rsaI', 'sacI', 'sau3AI', 'sbfI', 'sexAI', 'sgrAI', 'speI', 'sphI', 'taqI', 'xbaI', or 'xhoI'.
 
-This function output four files per barcode in a directory STEP_2_DEMULTIPLEX/, two for the single-end reads and two for the paired-end reads.
+This function output four files per barcode in a directory **STEP_2_DEMULTIPLEX/**, two for the single-end reads and two for the paired-end reads.
 
 `ls STEP_2_DEMULTIPLEX/`
 
@@ -245,34 +245,34 @@ In this case, the samples AOS_7_Cla and AOS_7_Ens are a same AOS_7 individual fr
 160817_SNK268_B_L002_GWM-817-6<tab>AOS_8<tab>AOS_8
 ```
 
-All the output files will be in the  STEP_3_PREPARE_SAMPLE/ directory.
+All the output files will be in the **STEP_3_PREPARE_SAMPLE/** directory.
 
 #### 3.4 - Range of M threshold for loci reconstruction (Step 4)
 
 A de novo assembly is performed on aligned reads for each sample from the provided list using the ustacks function. The minimum coverage to create a stack of identical reads (-m) was fixed (params file) and a range of values of different nucleotides was tested to merge two different stacks into one polymorphic locus (-M). Highly-repetitive stacks and over merged tags were dropped using both the “Removal algorithm” (-r) and the “Deleveraging algorithm” (-d). PmR will create a STEP_4_ASSEMBLE_LOCI directory containing a directory for each M value supplied in the range. 
 
 Each of M_<Value> directory contains three files for each sample provided in the assembly file: 
-  sampleXXX.tags.tsv: containing each loci assembled
-  sampleXXX.snps.tsv: containing each loci assembled  
-  sampleXXX.alleles.tsv: Haplotypes/alleles recorded from each locus
++ sampleXXX.tags.tsv: containing each loci assembled
++ sampleXXX.snps.tsv: containing each loci assembled  
++ sampleXXX.alleles.tsv: Haplotypes/alleles recorded from each locus
 
 The choice of the optimal M value depends on the distribution of the number of polymorphic stacks according to the range of M values (given in output) and is arbitrary fixed by the user. The retained value should correspond for example to the threshold M value for which Stacks will not merge anymore loci in spite of the increase of the distance allowed between loci. 
 
 #### 3.5 - Loci reconstruction for each individuals (Step 5)
 
 Considering the chosen M value, a reconstruction of loci is made for each individuals separatle by the ustacks function.
-Output files will be in the STEP_5_7_RUN_STACKS/ directory. 
+Output files will be in the **STEP_5_7_RUN_STACKS/** directory. 
 
 
 #### 3.6 - Build the catalog of loci (Step 6)
 
 A catalog of the loci from all the individuals’ loci data sets is built using the cstacks function by producing consensus alleles for each locus. A maximum value of mismatches allowed for considering two individual tags as the same locus and to merge them in the catalogue (-n) must be supplied in the params.txt  file.
-Output files will be in the STEP_5_7_RUN_STACKS/ directory. 
+Output files will be in the **STEP_5_7_RUN_STACKS/** directory. 
 
 #### 3.7 - Match of individual loci to the catalog (Step 7)
 
 The sets of loci constructed within each individual reads pool (step 5) were then searched against the newly produced catalog (step 6) using the sstacks function. Two files are created batch_X.catalog.tags.tsv corresponding to the catalog and batch_X.matches.tsv containing the matches of the catalog. 
-Output files will be in the STEP_5_7_RUN_STACKS/ directory. 
+Output files will be in the **STEP_5_7_RUN_STACKS/** directory. 
 
 #### 3.8 - Genetic dataset export (Step 8)
 
