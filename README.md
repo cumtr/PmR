@@ -40,72 +40,38 @@ RES=~/Path_2_RES/                              ## path to directory to write out
 THREADS=15                                     ## Number of threads which will be used
 VERBOSE=1                                      ## Set verbose to TRUE (1) or FASE (0)
 
-
 # Step 1 
-ADAP=~/Path_2_PmR/ressources/adapters.fa
-MIN_LENGTH=60
+ADAP=~/Path_2_PmR/ressources/adapters.fa       ## list of adapters for filtering reads
+MIN_LENGTH=60                                  ## minimum length of reads kept after adapters trimming
 
 # Step 2
-ENZYME_1=pstI
-ENZYME_2=mspI
-MAX_LENGTH=90
+ENZYME_1=pstI                                  ## first restriction enzyme used
+ENZYME_2=mspI                                  ## second restriction enzyme used
+MAX_LENGTH=90                                  ## truncate final read length to this value 
 
 # Step 3
 
 # Step 4 
-COVERAGE_LOC_MIN=5
-MISMATCH_LOC_IND_START=0
+COVERAGE_LOC_MIN=5                             ## Minimum depth of coverage to create a stack (m)
+MISMATCH_LOC_IND_START=0                       ## Starting value of the Maximum distance (in nucleotides) allowed between stacks (M)
+MISMATCH_LOC_IND_END=7                         ## Ending value of the Maximum distance (in nucleotides) allowed between stacks (M)
+NB_INDIV_M=10                                  ## Number of individuals used for the game
 
-MISMATCH_LOC_IND_END=7
-
-NB_INDIV_M=10
 
 # Step 5
-M_CHOSEN=6
+M_CHOSEN=6                                     ## Number of mismatches allowed between sample loci when building the catalog (M)
 
 # Step 6 
-MISMATCH_CATALOG_MAX=8
+MISMATCH_CATALOG_MAX=8                         ## Number of mismatches allowed between a read and a loci in the catalog (n) 
 
 # Step 7 
 
 # Step 8 
-POP_INFOS=${DATA}/Populations_table.txt
-NB_POP=3
-PROP_POP=0.10
-MAF=0.005
+POP_INFOS=${DATA}/Populations_table.txt        ## population file
+NB_POP=3                                       ## the locus must be present in at least X populations
+PROP_POP=0.10                                  ## minimum percentage of individuals in a population required to process a locus for that population
+MAF=0.005                                      ## minimum minor allele frequency required to process a nucleotide site at a locus (0 < min_maf < 0.5)
 
-
-
-
-
-
-
-## list of adapters for filtering reads
-## minimum length of reads kept after adapters trimming 
-
-## first restriction enzyme used
-## second restriction enzyme used
-## truncate final read length to this value 
-
-
-
-
-## Minimum depth of coverage to create a stack (m)
-## Starting value of the Maximum distance (in nucleotides) allowed between stacks (M)
-## Ending value of the Maximum distance (in nucleotides) allowed between stacks (M)
-## Number of individuals used for the game
-
-
-## Number of mismatches allowed between sample loci when building the catalog (M)
-
-## Number of mismatches allowed between a read and a loci in the catalog (n) 
-
-
-
-## population file
-## the locus must be present in at least X populations
-## minimum percentage of individuals in a population required to process a locus for that population
-## minimum minor allele frequency required to process a nucleotide site at a locus (0 < min_maf < 0.5)
 ```
 
 #### 2.2 - Dependencies (tools.txt)
@@ -135,8 +101,8 @@ this repertory must contain :
 + a population file (optional)
 
 The sequences files are in .fastq.gz format and should be named :
-+ Basename_Lib_R1.fastq.gz
-+ Basename_Lib_R2.fastq.gz
+    Basename_Lib_R1.fastq.gz
+    Basename_Lib_R2.fastq.gz
 
 where <Basename_Lib> is the name of the library.
 
