@@ -18,17 +18,9 @@ PmR is tested on Unix environment and requires:
 + Needs awk, java, gcc and g++
 
 
+### 2. Input files
+--------------------
 
-```
-git clone https://github.com/cumtr/BAdabouM.git
-
-cd BAdabouM/
-
-make
-```
-
-
-2. Input files
 
 PmR requires the paired-end ddRAD sequences files (R1 and R2), a file of barcodes/individuals matching, a file of parameters and a file of adapters sequences. All these files have to be directly placed in the DATA directory.
 
@@ -166,7 +158,10 @@ Sample1Name<tab>pop01
 Sample2Name<tab>pop01
 Sample3Name<tab>pop02
 
-3. Pipeline description
+
+### 3. Pipeline description
+--------------------
+
 
 PmR mostly used the Stacks functions to treat the ddRAD sequencing data. We strongly recommend to look at the Stacks documentation before using the pipeline. 
 
@@ -261,6 +256,9 @@ To run the complete pipeline:
 
 % ./PmR.sh -s all -p params.txt
 
-5. References
+
+### 5. References
+--------------------
+
 
 Catchen, Julian, Paul A. Hohenlohe, Susan Bassham, Angel Amores, and William A. Cresko. 2013. “Stacks: An Analysis Tool Set for Population Genomics.” Molecular Ecology 22 (11): 3124–40.
