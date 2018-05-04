@@ -30,9 +30,7 @@ PmR requires the paired-end ddRAD sequences files (R1 and R2), a file of barcode
 
 The following section describes the params files required for PmR. Users have to modify the params.txt file provided before running PmR. Default values are set for filtering and assembly steps. As the step 4 of PmR performs a range of parameter setting to optimise the assembly of loci, some values have to be modified after the step 4 (see section 3.). 
 
-```
-less params.txt
-```
+`less params.txt`
 
 
 | Header 1      |     2 header    |   header 3 |
@@ -125,9 +123,8 @@ MAF=0.005
 
 
 The access path of all dependencies required by PmR must be supplied in the tools.sh file, using following command: 
-```
-cat tools.sh
-```
+
+`cat tools.sh`
 
 ```
 #!/bin/bash
@@ -154,17 +151,15 @@ Basename_Lib_R1.fastq.gz
 Basename_Lib_R2.fastq.gz
 where <Basename_Lib> is the name of the library.
 
-```
-ls DATA/
-```
+`ls DATA/`
+
 ```
 Library_test_R1.fastq.gz
 Library_test_R2.fastq.gz
 ```
 
-```
-less DATA/Library_test_R1.fastq.gz
-```
+`less DATA/Library_test_R1.fastq.gz`
+
 ```
 @K00268:48:H7YLJBBXX:2:1101:3285:998 1:N:0
 ATTTATATATAAATCATCGAGCGAGGAGAGCTAGAGAGC
@@ -175,10 +170,12 @@ ATTTATATATAAATCATCGAGCGAGGAGAGCTAGAGAGC
 The barcodes file is a table with barcodes and samples matches. Each line should have one name and one barcode, separated by a tab, as in the following example:
 This file have to be called Basename_Lib.barcode, where <Basename_Lib> is the name of the library.
 
-% head DATA/Library_test.barcode
+`head DATA/Library_test.barcode`
+
+```
 CGATA <tab> Sample1
 CTGTT <tab> Sample2
-
+```
 
 The population map file links individuals to different population groups for summary statistics computing such as π, FIS and FST. Each line should have one name and one barcode, separated by a tab, as in the following example:
 
