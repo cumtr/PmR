@@ -39,7 +39,7 @@ The following section describes the params files required for PmR. Users have to
 | Line 2        |        2        |      value |
 | 3 Online      |        3        |      value |
 
-
+```
 # Global parameters :
 TOOLS=~/Path_2_TOOLS/tools.sh
 DATA=~/Path_2_DATA/
@@ -117,7 +117,7 @@ MAF=0.005
 ## the locus must be present in at least X populations
 ## minimum percentage of individuals in a population required to process a locus for that population
 ## minimum minor allele frequency required to process a nucleotide site at a locus (0 < min_maf < 0.5)
-
+```
 
 #### 2.2 - Dependencies (tools.txt)
 
@@ -147,8 +147,8 @@ a barcode file
 a population file (optional)
 
 The sequences files are in .fastq.gz format and should be named :
-Basename_Lib_R1.fastq.gz
-Basename_Lib_R2.fastq.gz
++Basename_Lib_R1.fastq.gz
++Basename_Lib_R2.fastq.gz
 where <Basename_Lib> is the name of the library.
 
 `ls DATA/`
