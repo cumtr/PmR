@@ -5,7 +5,7 @@
   </a>
 </p>
 
-Pimp my RAD (PmR) is a pipeline providing different tools to guide the treatment of ddRAD sequencing data. In addition to automatically treat the sequences using Stacks functions (Catchen et al. 2013), the pipeline allow for data cleaning, data visualization and help users to choose pertinent thresholds during loci reconstruction and genetic dataset export. 
+Process my RAD (PmR) is a pipeline providing different tools to guide the treatment of ddRAD sequencing data. In addition to automatically treat the sequences using Stacks functions (Catchen et al. 2013), the pipeline allow for data cleaning, data visualization and help users to choose pertinent thresholds during loci reconstruction and genetic dataset export. 
 
 
 ### 1 . Installation
