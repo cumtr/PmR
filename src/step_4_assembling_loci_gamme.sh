@@ -69,7 +69,7 @@ R --vanilla <<EOF
 
         pdf(paste0("${STACKS}","/M_choice.OutStep4.pdf") , width = 10, height = 5)
 
-        boxplot(t(TAB_Part), border = "grey50", names = c(0:(ncol(TAB)-1)), main = "Part of polymorphics stacks\naccording to M values (R1)")
+        boxplot(t(TAB_Part), border = "grey50", names = c(${MISMATCH_LOC_IND_START}:${MISMATCH_LOC_IND_END}), main = "Part of polymorphics stacks\naccording to M values (R1)")
         lines(apply(TAB_Part, 1, function(x){median(x)}), col = "blue", lwd = 2)
 
         dev.off()
