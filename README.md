@@ -137,9 +137,9 @@ The population map file links individuals to different population groups for sum
 
 `head Populations_table.txt`
 ```
-Sample1Name<tab>pop01
-Sample2Name<tab>pop01
-Sample3Name<tab>pop02
+Sample1Name <tab> pop01
+Sample2Name <tab> pop01
+Sample3Name <tab> pop02
 ```
 
 ### 3. Pipeline description
@@ -153,9 +153,38 @@ If sequencing adapters are present in the sequences, they are removed by bbduk. 
 
 A directory named **STEP_1_FITLER_READS/**, is created at this step containing the clean data which will be used by PmR.
 
+multiple graph are produced to illustrate reads informations after trimming :
+
++ Read Length
+
+<p align="center">
+  <a>
+    <img height="300" src="ressources/Output_Files/PmR_Step1_ReadLength.pdf">
+  </a>
+</p>
+
++ Reads quality
+
+<p align="center">
+  <a>
+    <img height="300" src="ressources/Output_Files/PmR_Step1_ReadQual.pdf">
+  </a>
+</p>
+
++ Nucleotide compostions along reads
+
+<p align="center">
+  <a>
+    <img height="300" src="ressources/Output_Files/PmR_Step1_NucComposition.pdf">
+  </a>
+</p>
+
+all these graphs are saved in the **RES/** directory, in the <Basename_Lib>.OutStep1.pdf file.
+
+
 #### 3.2 - Data demultiplexing and reads filtering (Step 2)
 
-The process_radtags function from Stacks is run on each library to demultiplex and filter the reads on their quality with a sliding window of 15% of the read length and a Phred score limit to 10. By default the quality score of reads is encoded in phred33. Reads with low quality or uncalled bases were removed. This step requires to specify a barcode file linking barcodes to samples and the couple of enzymes used during the lab protocol.  
+The process_radtags function from Stacks is run on each library to demultiplex and filter the reads on their quality with a sliding window of 15% of the read length and a Phred score limit to 10. By default the quality score of reads is encoded in phred33. Reads with low quality or uncalled bases are removed. This step requires to specify a barcode file linking barcodes to samples and the couple of enzymes used during the lab protocol.  
 
 Currently supported enzymes by Stacks include:
 'aciI', 'ageI', 'aluI', 'apeKI', 'apoI', 'aseI', 'bamHI', 'bfaI', 'bgIII', 'bspDI', 'bstYI', 'claI', 'ddeI', 'dpnII', 'eaeI', 'ecoRI', 'ecoRV', 'ecoT22I', 'hindIII', 'kpnI', 'mluCI', 'mseI', 'mspI', 'ndeI', 'nheI', 'nlaIII', 'notI', 'nsiI', 'pstI', 'rsaI', 'sacI', 'sau3AI', 'sbfI', 'sexAI', 'sgrAI', 'speI', 'sphI', 'taqI', 'xbaI', or 'xhoI'.
@@ -173,6 +202,14 @@ sample_ACTCG.rem.2.fq
 
 PmR will create a `inds.tsv` file containing all demultiplexed samples after the step 2.
 
+This step produce a graph called <Basename_Lib>.OutStep2.pdf in the **RES/** directory, which illustrante, for each individuals, the total number of reads and the proportion retained after filtration.
+
+<p align="center">
+  <a>
+    <img height="300" src="ressources/Output_Files/PmR_Step2_ReadFiltration.pdf">
+  </a>
+</p>
+
 
 #### 3.3 - Samples files preparation for loci reconstruction (Step 3)
 
@@ -183,21 +220,21 @@ If the same sample is sequenced on different runs (i.e. differents libraries), P
 
 `head inds.tsv`
 ```
-160817_SNK268_B_L002_GWM-817-4<tab>AOS_7_Cla<tab> AOS_7_Cla
-160817_SNK268_B_L002_GWM-817-4<tab>AOS_7_Ens<tab>AOS_7_Ens
-160817_SNK268_B_L002_GWM-817-4<tab>AOS_8 <tab>AOS_8
-160817_SNK268_B_L002_GWM-817-6<tab>AOS_8<tab>AOS_8
-160817_SNK268_B_L002_GWM-817-6<tab>AOS_12<tab>AOS_12
+160817_SNK268_B_L002_GWM-817-4 <tab> AOS_7_Cla <tab> AOS_7_Cla
+160817_SNK268_B_L002_GWM-817-4 <tab> AOS_7_Ens <tab> AOS_7_Ens
+160817_SNK268_B_L002_GWM-817-4 <tab> AOS_8 <tab> AOS_8
+160817_SNK268_B_L002_GWM-817-6 <tab> AOS_8 <tab> AOS_8
+160817_SNK268_B_L002_GWM-817-6 <tab> AOS_12 <tab> AOS_12
 ```
 
 In this case, the samples AOS_7_Cla and AOS_7_Ens are a same AOS_7 individual from the same sequencing run (160817_SNK268_B_L002_GWM-817-4) and AOS_8 had been sequenced twice in 160817_SNK268_B_L002_GWM-817-4 and 160817_SNK268_B_L002_GWM-817-6 libraries. AOS_12 is not processed because of too few reads (identify at the step 1). To perform assembling step, we thus keep only the AOS_7 and AOS_8 names and we remove AOS_12 from the list.
 
 `nano inds.tsv`
 ```
-160817_SNK268_B_L002_GWM-817-4<tab>AOS_7_Cla<tab> AOS_7
-160817_SNK268_B_L002_GWM-817-4<tab>AOS_7_Ens<tab>AOS_7
-160817_SNK268_B_L002_GWM-817-4<tab>AOS_8<tab>AOS_8
-160817_SNK268_B_L002_GWM-817-6<tab>AOS_8<tab>AOS_8
+160817_SNK268_B_L002_GWM-817-4 <tab> AOS_7_Cla <tab> AOS_7
+160817_SNK268_B_L002_GWM-817-4 <tab> AOS_7_Ens <tab> AOS_7
+160817_SNK268_B_L002_GWM-817-4 <tab> AOS_8 <tab> AOS_8
+160817_SNK268_B_L002_GWM-817-6 <tab> AOS_8 <tab> AOS_8
 ```
 
 All the output files will be in the **STEP_3_PREPARE_SAMPLE/** directory.
@@ -212,11 +249,28 @@ Each of M_<Value> directory contains three files for each sample provided in the
 + sampleXXX.alleles.tsv: Haplotypes/alleles recorded from each locus
 
 The choice of the optimal M value depends on the distribution of the number of polymorphic stacks according to the range of M values (given in output) and is arbitrary fixed by the user. The retained value should correspond for example to the threshold M value for which Stacks will not merge anymore loci in spite of the increase of the distance allowed between loci. 
+A graph called **M_choice.OutStep4.pdf** in the **RES/STEP_4_ASSEMBLE_LOCI/** directory is produced tu help the user to choice the M value.
+
+<p align="center">
+  <a>
+    <img height="300" src="ressources/Output_Files/PmR_Step4_MChoice.pdf">
+  </a>
+</p>
 
 #### 3.5 - Loci reconstruction for each individuals (Step 5)
 
 Considering the chosen M value, a reconstruction of loci is made for each individuals separatle by the ustacks function.
 Output files will be in the **STEP_5_7_RUN_STACKS/** directory. 
+
+THis step produce a **Indiv_FragCover.pdf** file in the **RES/** directory.
+This graph ilustrate the number of stacks per individuals and their mean coverage.
+
+<p align="center">
+  <a>
+    <img height="300" src="ressources/Output_Files/PmR_Step5_IndivCov.pdf">
+  </a>
+</p>
+
 
 
 #### 3.6 - Build the catalog of loci (Step 6)
@@ -246,6 +300,9 @@ Output files will be in the STEP_8_FINAL_OUTPUT/ directory.
 PmR could be called step by step or all the steps in one time. Recommendations about steps are given in the previous description (section 3). After edition of the tools.sh and params.txt files, the first step of quality analysis and demultiplexing should be called as following: 
 
 `./PmR.sh -s 1 -p params.txt`
+`./PmR.sh -s 2 -p params.txt`
+`./PmR.sh -s 3 -p params.txt`
+`...........................`
 
 To run the complete pipeline:
 
