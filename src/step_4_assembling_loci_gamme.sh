@@ -24,8 +24,8 @@ do
 		do
         	${USTACKS} -p $THREADS -t gzfastq -f ${forward} -o ${STACKS}/${MISMATCH_LOC_IND_MAX_START} -r -i ${i} -M ${MISMATCH_LOC_IND_MAX_START} -m ${COVERAGE_LOC_MIN} 2> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err
         	i=$[${i}+1]
-			grep 'stacks merged into' ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err | awk '{print $1,$5}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/nbstacks
-	        	grep 'coverage depth' ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/ustacks_err | tail -1 | awk 'match($0,";"){print substr($0,RSTART-7,7)}' | awk '{print $NF}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/cov
+			awk '/Assembled/' ${OUTPATH}/ustacks_err | awk '{print $2,$5}' | tr -d "\n" | awk '{print $1,$3}' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/nbstacks
+	        	awk '/Final coverage/ {print $3}' ${OUTPATH}/ustacks_err | sed -e 's/mean=//g' | sed -e 's/;//g' > ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/cov
 			chem=${forward/.AliConcat.fq/}
 			name=${chem/${RES}/STEP_3_PREPARE_SAMPLE\//}
 			echo ${name} `cat ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/nbstacks` `cat ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/cov` >> ${STACKS}/${MISMATCH_LOC_IND_MAX_START}/Stat_ustacks_M${MISMATCH_LOC_IND_MAX_START}.log

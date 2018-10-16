@@ -24,8 +24,8 @@ do
 	echo `basename ${forward}`
         ${USTACKS} -p ${THREADS} -t gzfastq -f ${forward} -o ${OUTPATH} -r -i ${i} -M ${MISMATCH} -m ${COVERAGE_LOC_MIN} 2> ${OUTPATH}/ustacks_err
         i=$[${i}+1]
-        awk '/stacks merged into/ { print $1,$5}' ${OUTPATH}/ustacks_err  > ${OUTPATH}/nbstacks
-        awk '/After merging/ { print $6}' ${OUTPATH}/ustacks_err | sed -e 's/;//g'  > ${OUTPATH}/cov
+        awk '/Assembled/' ${OUTPATH}/ustacks_err | awk '{print $2,$5}' | tr -d "\n" | awk '{print $1,$3}' > ${OUTPATH}/nbstacks
+	awk '/Final coverage/ {print $3}' ${OUTPATH}/ustacks_err | sed -e 's/mean=//g' | sed -e 's/;//g'  > ${OUTPATH}/cov
         chem=${forward/.R1.fq.gz/}
         name=${chem/${STEP_2_DEMULTIPLEX}\//}
         echo ${name} `cat ${OUTPATH}/nbstacks` `cat ${OUTPATH}/cov` >> ${OUTPATH}/Stat_ustacks_M${MISMATCH}.log
