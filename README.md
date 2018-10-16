@@ -14,7 +14,7 @@ Process my RAD (PmR) is a pipeline providing different tools to guide the treatm
 PmR is tested on Unix environment and requires:
 + bbduk (http://jgi.doe.gov/data-and-tools/bbtools/)
 + R (http://www.r-project.org/)
-+ Stacks (version 1.46, http://catchenlab.life.illinois.edu/stacks/)
++ Stacks (version 2.2, http://catchenlab.life.illinois.edu/stacks/)
 + Needs awk, java, gcc and g++
 
 
