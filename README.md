@@ -159,7 +159,7 @@ multiple graph are produced to illustrate reads informations after trimming :
 
 <p align="center">
   <a>
-    <img height="300" src="ressources/Output_Files/PmR_Step1_ReadLength.pdf">
+    <img height="300" src="ressources/Output_Files/PmR_Step1_ReadLength.png">
   </a>
 </p>
 
@@ -167,7 +167,7 @@ multiple graph are produced to illustrate reads informations after trimming :
 
 <p align="center">
   <a>
-    <img height="300" src="ressources/Output_Files/PmR_Step1_ReadQual.pdf">
+    <img height="300" src="ressources/Output_Files/PmR_Step1_ReadQual.png">
   </a>
 </p>
 
@@ -175,7 +175,7 @@ multiple graph are produced to illustrate reads informations after trimming :
 
 <p align="center">
   <a>
-    <img height="300" src="ressources/Output_Files/PmR_Step1_NucComposition.pdf">
+    <img height="300" src="ressources/Output_Files/PmR_Step1_NucComposition.png">
   </a>
 </p>
 
@@ -206,7 +206,7 @@ This step produce a graph called <Basename_Lib>.OutStep2.pdf in the **RES/** dir
 
 <p align="center">
   <a>
-    <img height="300" src="ressources/Output_Files/PmR_Step2_ReadFiltration.pdf">
+    <img height="300" src="ressources/Output_Files/PmR_Step2_ReadFiltration.png">
   </a>
 </p>
 
@@ -253,7 +253,7 @@ A graph called **M_choice.OutStep4.pdf** in the **RES/STEP_4_ASSEMBLE_LOCI/** di
 
 <p align="center">
   <a>
-    <img height="300" src="ressources/Output_Files/PmR_Step4_MChoice.pdf">
+    <img height="300" src="ressources/Output_Files/PmR_Step4_MChoice.png">
   </a>
 </p>
 
@@ -267,7 +267,7 @@ This graph ilustrate the number of stacks per individuals and their mean coverag
 
 <p align="center">
   <a>
-    <img height="300" src="ressources/Output_Files/PmR_Step5_IndivCov.pdf">
+    <img height="300" src="ressources/Output_Files/PmR_Step5_IndivCov.png">
   </a>
 </p>
 
@@ -299,14 +299,14 @@ Output files will be in the STEP_8_FINAL_OUTPUT/ directory.
 
 PmR could be called step by step or all the steps in one time. Recommendations about steps are given in the previous description (section 3). After edition of the tools.sh and params.txt files, the first step of quality analysis and demultiplexing should be called as following: 
 
-`./PmR.sh -s 1 -p params.txt`
-`./PmR.sh -s 2 -p params.txt`
-`./PmR.sh -s 3 -p params.txt`
-`...........................`
++ `./PmR.sh -s 1 -p params.txt`
++ `./PmR.sh -s 2 -p params.txt`
++ `./PmR.sh -s 3 -p params.txt`
++ `...........................`
 
 To run the complete pipeline:
 
-`./PmR.sh -s all -p params.txt`
++ `./PmR.sh -s all -p params.txt`
 
 
 ### 5. References
