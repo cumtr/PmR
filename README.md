@@ -253,7 +253,7 @@ A graph called **M_choice.OutStep4.pdf** in the **RES/STEP_4_ASSEMBLE_LOCI/** di
 
 <p align="center">
   <a>
-    <img height="250" src="ressources/Output_Files/PmR_Step4_MChoice.png">
+    <img height="200" src="ressources/Output_Files/PmR_Step4_MChoice.png">
   </a>
 </p>
 
@@ -267,7 +267,7 @@ This graph ilustrate the number of stacks per individuals and their mean coverag
 
 <p align="center">
   <a>
-    <img height="350" src="ressources/Output_Files/PmR_Step5_IndivCov.png">
+    <img height="400" src="ressources/Output_Files/PmR_Step5_IndivCov.png">
   </a>
 </p>
 
