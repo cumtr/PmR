@@ -309,8 +309,14 @@ To run the complete pipeline:
 + `./PmR.sh -s all -p params.txt`
 
 
-### 5. References
+### 5. How to cite this work
+----------------------------
+
+If you use this pipeline or seek for informations about ddRad-seq, please read and cite:
+Cumer, T., Pouchon, C., Boyer, F., Yannic, G., Rioux, D., Bonin, A., & Capblancq, T. (2021). Double-digest RAD-sequencing: do pre-and post-sequencing protocol parameters impact biological results?. Molecular Genetics and Genomics, 296(2), 457-471.
+  
+ 
+### 6. References
 --------------------
 
-
-Catchen, Julian, Paul A. Hohenlohe, Susan Bassham, Angel Amores, and William A. Cresko. 2013. “Stacks: An Analysis Tool Set for Population Genomics.” Molecular Ecology 22 (11): 3124–40.
+Catchen, J., Hohenlohe, P. A., Bassham, S., Amores, A., & Cresko, W. A. (2013). Stacks: an analysis tool set for population genomics. Molecular ecology, 22(11), 3124-3140.
