@@ -312,7 +312,7 @@ To run the complete pipeline:
 ### 5. How to cite this work
 ----------------------------
 
-If you use this pipeline or seek for informations about ddRad-seq, please read and cite:
+If you use this pipeline or seek more information about ddRAD-seq, please read and cite:
 Cumer, T., Pouchon, C., Boyer, F., Yannic, G., Rioux, D., Bonin, A., & Capblancq, T. (2021). Double-digest RAD-sequencing: do pre-and post-sequencing protocol parameters impact biological results?. Molecular Genetics and Genomics, 296(2), 457-471.
   
  
