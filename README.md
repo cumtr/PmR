@@ -5,7 +5,7 @@
   </a>
 </p>
 
-Process my RAD (PmR) is a pipeline providing different tools to guide the treatment of ddRAD sequencing data. In addition to automatically treat the sequences using Stacks functions (Catchen et al. 2013), the pipeline allow for data cleaning, data visualization and help users to choose pertinent thresholds during loci reconstruction and genetic dataset export. An associated paper was published in Molecular Genetics and Genomics in 2021: Cumer, T., Pouchon, C., Boyer, F., Yannic, G., Rioux, D., Bonin, A., & Capblancq, T. (2021). Double-digest RAD-sequencing: do pre-and post-sequencing protocol parameters impact biological results?. Molecular Genetics and Genomics, 296(2), 457-471. https://doi.org/10.1007/s00438-020-01756-9
+Process my RAD (PmR) is a pipeline providing different tools to guide the treatment of ddRAD sequencing data. In addition to automatically treat the sequences using Stacks functions (Catchen et al. 2013), the pipeline allows for data cleaning, data visualization and helps users to choose pertinent thresholds during loci reconstruction and genetic dataset export. An associated paper was published in Molecular Genetics and Genomics in 2021: Cumer, T., Pouchon, C., Boyer, F., Yannic, G., Rioux, D., Bonin, A., & Capblancq, T. (2021). Double-digest RAD-sequencing: do pre-and post-sequencing protocol parameters impact biological results?. Molecular Genetics and Genomics, 296(2), 457-471. https://doi.org/10.1007/s00438-020-01756-9
 
 
 ### 1 . Installation
